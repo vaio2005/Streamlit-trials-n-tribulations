@@ -34,6 +34,9 @@ def grab_meme_url():
 # Story parts
 
 mdtext1 = """
+:yellow[At the end of the story you will be able to see the Markdown code that was used to create the story.]  
+  
+
 :blue[Our story begins with a simple text, that wanted to be stronger, and wished to become a title. Let's help it!]  
 :green[_We can create a title by using # in front of the text._]  
   
@@ -259,6 +262,7 @@ elif st.session_state['level'] == 11:
 elif st.session_state['level'] == 12:
     st.session_state['meme'] = grab_meme_url()
     st.markdown(mdtext13.replace("&&URL&&", st.session_state['meme']))
+    st.balloons()
     st.button("Click me to see the markdown code!", on_click=increase, help='Show the markdown code!')
 elif st.session_state['level'] == 13:
     st.markdown(mdtextfinish.replace("&&URL&&", st.session_state['meme']))
