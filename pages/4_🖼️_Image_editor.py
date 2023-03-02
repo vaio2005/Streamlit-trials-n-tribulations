@@ -54,5 +54,57 @@ if uploaded_file is not None:
             blur_image = cv2.GaussianBlur(inv_gray, (slider,slider), 0, 0)
             conv_image = cv2.divide(gray_scale, 255 - blur_image, scale=256)
         elif filter == "Edge Detection":
+            conv_image = np.array(image.convert("RGB"))
+            conv_image = cv2.cvtColor(conv_image, cv2.COLOR_RGB2BGR)
+            conv_image = cv2.Canny(conv_image, 100, 200)
+            conv_image = cv2.cvtColor(conv_image, cv2.COLOR_BGR2RGB)
+            conv_image = Image.fromarray(conv_image)
+        else:
+            conv_image = image
+        
+        #options to edit the image directly
+        st.sidebar.subheader("Edit image")
+        st.sidebar.write("Edit your image directly.")
+        brightness = st.sidebar.slider("Brightness", 0.0, 3.0, 1.0)
+        contrast = st.sidebar.slider("Contrast", 0.0, 3.0, 1.0)
+        saturation = st.sidebar.slider("Saturation", 0.0, 3.0, 1.0)
+        hue = st.sidebar.slider("Hue", 0.0, 3.0, 1.0)
+        enhancer = ImageEnhance.Brightness(conv_image)
+        conv_image = enhancer.enhance(brightness)
+        enhancer = ImageEnhance.Contrast(conv_image)
+        conv_image = enhancer.enhance(contrast)
+        enhancer = ImageEnhance.Color(conv_image)
+        conv_image = enhancer.enhance(saturation)
+        enhancer = ImageEnhance.Sharpness(conv_image)
+        conv_image = enhancer.enhance(hue)
+
+        #radio button to extract the different RGB channels
+        st.sidebar.subheader("Extract RGB channels")
+        st.sidebar.write("Extract the different RGB channels of your image.")
+        channel = st.sidebar.radio(
+            label="Choose a channel",
+            options=["None", "Red", "Green", "Blue"],
+        )
+
+        if channel == "Red":
+            conv_image = np.array(conv_image.convert("RGB"))
+            conv_image = cv2.cvtColor(conv_image, cv2.COLOR_RGB2BGR)
+            conv_image = cv2.split(conv_image)[2]
+            conv_image = cv2.cvtColor(conv_image, cv2.COLOR_BGR2RGB)
+            conv_image = Image.fromarray(conv_image)
+        elif channel == "Green":
+            conv_image = np.array(conv_image.convert("RGB"))
+            conv_image = cv2.cvtColor(conv_image, cv2.COLOR_RGB2BGR)
+            conv_image = cv2.split(conv_image)[1]
+            conv_image = cv2.cvtColor(conv_image, cv2.COLOR_BGR2RGB)
+            conv_image = Image.fromarray(conv_image)
+        elif channel == "Blue":
+            conv_image = np.array(conv_image.convert("RGB"))
+            conv_image = cv2.cvtColor(conv_image, cv2.COLOR_RGB2BGR)
+            conv_image = cv2.split(conv_image)[0]
+            conv_image = cv2.cvtColor(conv_image, cv2.COLOR_BGR2RGB)
+            conv_image = Image.fromarray(conv_image)
+        
+        #show image
         st.image(conv_image, use_column_width=True)
     
