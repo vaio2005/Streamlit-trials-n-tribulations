@@ -53,6 +53,7 @@ if uploaded_file is not None:
             slider = st.sidebar.slider('Adjust the intensity', 25, 255, 125, step=2)
             blur_image = cv2.GaussianBlur(inv_gray, (slider,slider), 0, 0)
             conv_image = cv2.divide(gray_scale, 255 - blur_image, scale=256)
+            conv_image = Image.fromarray(conv_image)
         elif filter == "Edge Detection":
             conv_image = np.array(image.convert("RGB"))
             conv_image = cv2.cvtColor(conv_image, cv2.COLOR_RGB2BGR)

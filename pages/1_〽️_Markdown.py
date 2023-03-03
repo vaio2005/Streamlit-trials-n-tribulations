@@ -1,5 +1,12 @@
 import streamlit as st
 
+st.set_page_config(
+    page_title="Markdown",
+    page_icon=":pencil2:",
+    layout="centered",
+)
+
+
 st.title("A little story about markdown.")
 
 # Initialization of session state and logic of session state
