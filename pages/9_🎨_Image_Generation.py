@@ -33,7 +33,7 @@ if st.button("Generate"):
     with st.spinner("Generating image..."):
         time.sleep(5)
         markdown = f"""
-        ![Generated image](https://image.pollinations.ai/prompt/{prompt})
+        ![Generated image](https://image.pollinations.ai/prompt/{prompt})  
         """
 
     st.markdown(markdown)
