@@ -126,6 +126,8 @@ if (st.session_state.get('game_state') == "pre"):
     st.markdown("Good luck!")
     bet = st.slider("Bet", min_value=0, max_value=st.session_state['player_balance'], value=0)
     st.session_state['player_bet'] = bet
+    print(bet)
+    print(st.session_state['player_bet'])
     st.session_state['player_balance'] -= bet
     if (st.button("Deal")):
         st.session_state['game_state'] = "first"
@@ -266,20 +268,22 @@ if (st.session_state.get('game_state') == "stand"):
         draw_dealer_card()
         time.sleep(5)
     
+    print(st.session_state.get('player_bet'))
+    
     if (calculate_dealer_hand(False) > 21):
         st.text("Dealer has busted!")
-        st.session_state['player_balance'] += st.session_state['player_bet'] * 2
+        st.session_state['player_balance'] = st.session_state['player_balance'] + (st.session_state['player_bet'] * 2)
         st.session_state['game_state'] = "end"
     elif (calculate_dealer_hand(False) > calculate_player_hand()):
         st.text("Dealer has won!")
         st.session_state['game_state'] = "end"
     elif (calculate_dealer_hand(False) == calculate_player_hand()):
         st.text("It's a tie!")
-        st.session_state['player_balance'] += st.session_state['player_bet']
+        st.session_state['player_balance'] = st.session_state['player_balance'] + st.session_state['player_bet']
         st.session_state['game_state'] = "end"
     else:
         st.text("Player has won!")
-        st.session_state['player_balance'] += st.session_state['player_bet'] * 2
+        st.session_state['player_balance'] = st.session_state['player_balance'] + (st.session_state['player_bet'] * 2)
         st.session_state['game_state'] = "end"
     
     with col1:
