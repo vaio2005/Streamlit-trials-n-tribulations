@@ -79,7 +79,12 @@ def calculate_dealer_hand(first:bool):
         total -= 10
     if (total == 21): return total
     if (first is True):
-        total -= int(cards[1]['value'])
+        if (cards[1]['value'] == 'KING' or cards[1]['value'] == 'QUEEN' or cards[1]['value'] == 'JACK'):
+            total -= 10
+        elif (cards[1]['value'] == 'ACE'):
+            total -= 11
+        else:
+            total -= int(cards[1]['value'])
     return total
 
 def get_player_hand():
@@ -257,7 +262,7 @@ if (st.session_state.get('game_state') == "third"):
             st.session_state['game_state'] = "end"
             
 if (st.session_state.get('game_state') == "stand"):
-    while calculate_dealer_hand(False) <= 17:
+    while calculate_dealer_hand(False) < 17:
         draw_dealer_card()
         time.sleep(5)
     
