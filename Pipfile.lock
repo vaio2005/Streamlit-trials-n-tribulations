@@ -53,7 +53,9 @@
                 "sha256:539cc1d13202e33ca466e88b2807e29f4c13049d6d87031a3c110744495cb082",
                 "sha256:92d6037539857d8206b8f6ae472e8b77db8058fec5937a1ef3f54304089edbb9"
             ],
-            "markers": "python_version >= '3.6'",
+
+            "index": "pypi",
+
             "version": "==2023.7.22"
         },
         "charset-normalizer": {
@@ -155,11 +157,11 @@
         },
         "gitpython": {
             "hashes": [
-                "sha256:9cbefbd1789a5fe9bcf621bb34d3f441f3a90c8461d377f84eda73e721d9b06b",
-                "sha256:c19b4292d7a1d3c0f653858db273ff8a6614100d1eb1528b014ec97286193c09"
+                "sha256:4bb0c2a6995e85064140d31a33289aa5dce80133a23d36fcd372d716c54d3ebf",
+                "sha256:8d22b5cfefd17c79914226982bb7851d6ade47545b1735a9d010a2a4c26d8388"
             ],
-            "index": "pypi",
-            "version": "==3.1.35"
+            "markers": "python_version >= '3.7'",
+            "version": "==3.1.36"
         },
         "idna": {
             "hashes": [
@@ -311,7 +313,7 @@
                 "sha256:f08f2e037bba04e707eebf4bc934f1972a315c883a9e0ebfa8a7756eabf9e357",
                 "sha256:fd608e19c8d7c55021dffd43bfe5492fab8cc105cc8986f813f8c3c048b38760"
             ],
-            "markers": "python_version >= '3.9'",
+            "markers": "python_version >= '3.10'",
             "version": "==1.25.2"
         },
         "opencv-contrib-python": {
