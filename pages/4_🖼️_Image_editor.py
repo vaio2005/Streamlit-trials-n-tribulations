@@ -15,7 +15,7 @@ st.write("This is an image editor built with Streamlit.")
 
 st.write("Upload an image to get started.")
 
-uploaded_file = st.file_uploader("Choose an image...", type="jpg")
+uploaded_file = st.file_uploader("Choose an image...", type=['jpg','png'])
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
